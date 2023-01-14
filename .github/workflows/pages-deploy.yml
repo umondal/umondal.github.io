@@ -54,6 +54,14 @@ jobs:
         run: |
           bundle exec htmlproofer _site --disable-external --check-html --allow_hash_href
 
+      - name: Push to gh-pages branch (for Tor / I2P version)
+         uses: s0/git-publish-subdir-action@develop
+         env:
+           REPO: self
+           BRANCH: html
+           FOLDER: ./_site
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+           
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v1
         with:
